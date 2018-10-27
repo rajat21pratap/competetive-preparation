@@ -1,0 +1,35 @@
+import java.util.Arrays;
+import java.util.Random;
+public class HelloWorld{
+
+     public static void main(String []args){
+        System.out.println("Hello World");
+        Random rand = new Random();
+        int list[] = new int[25];
+        for( int count=0; count< list.length; count++){
+            list[count] = count + rand.nextInt(100);
+        }
+        System.out.println(Arrays.toString(list));
+        SelectionSort(list);
+        System.out.println(Arrays.toString(list));
+     }
+     
+     static void SelectionSort(int[] list) {
+        int minVal=-1;
+        int pointer=0;
+        int posToReplace=-1;
+        for(int outerCount=0;outerCount<list.length-1;outerCount++){
+            minVal=list[pointer];
+            for( int count=pointer+1;count<list.length;count++){
+                if(list[count] < minVal){
+                    minVal = list[count];
+                    posToReplace = count;
+                }
+            }
+            list[posToReplace] = list[pointer];
+            list[pointer] = minVal;
+            pointer++;
+            
+        }
+     }
+}
