@@ -1,0 +1,33 @@
+import java.util.Arrays;
+public class HelloWorld{
+
+     public static void main(String []args){
+        System.out.println("Hello World");
+        int list[] = new int[100];
+        int searchThis = 50;
+        for( int count=0; count< list.length; count++){
+            list[count] = count;
+        }
+        System.out.println(Arrays.toString(list));
+        binarySearch(list,0,(list.length-1), searchThis);
+     }
+     
+     static void binarySearch(int[] list, int start, int end, int searchThis) {
+         int midIndex = (end + start)/2;
+         System.out.println("midIndex: "+midIndex);
+         if( list[midIndex] == searchThis ){
+            System.out.println("Found at index: "+midIndex);
+            return;
+         }else{
+             if(searchThis < list[midIndex]){
+                 System.out.println("calling 1: ");
+                 binarySearch(list,start,midIndex-1,searchThis);
+             }
+             else if(searchThis > list[midIndex]){
+                 System.out.println("calling 2: ");
+                 binarySearch(list,midIndex+1,end,searchThis);
+             }
+         }
+    
+     }
+}
