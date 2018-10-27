@@ -1,0 +1,23 @@
+import java.util.Arrays;
+public class HelloWorld{
+
+     public static void main(String []args){
+        System.out.println("Hello World");
+        int list[] = new int[100];
+        for( int count=0; count< list.length; count++){
+            list[count] = count;
+        }
+        System.out.println(Arrays.toString(list));
+        searchElementInArray(list, 50);
+     }
+     
+     static void searchElementInArray(int[] list, int searchThis) {
+         for( int count=0; count< list.length; count++){
+            if (list[count] == searchThis) {
+                System.out.println("Found at index: "+count);
+                break;
+            }
+            
+        }
+     }
+}
