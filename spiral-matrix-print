@@ -1,0 +1,59 @@
+function printSpiralArray () {
+    let matrix = [[1,2,3,4],[7,8,9,10],[11,12,13,14],[15,16,17,19]];
+    let R = 4,C = 4,s,e;
+    let row=0,c=0,col=0,r=0;
+    while(row < R && col < C) {
+        
+        s=col,e=C-1,r=row;;
+        printRow(matrix,r,s,e);
+        
+        s=row+1,e=R-1,c=C-1;
+        printColumn(matrix,c,s,e);
+        
+        C=C-1;
+        s=C-1,e=col,r=R-1;
+        printRowRev(matrix,r,s,e);
+        
+        R=R-1;
+        s=R-1,e=row+1,c=col;
+        printColumnRev(matrix,c,s,e);
+        
+        row++;
+        col++;
+    }              
+}
+               
+function printRow(matrix,row,s,e){
+    let j=s,i=row;
+    while(j <= e){
+      console.log(matrix[i][j]);
+      j++;
+    }
+}
+
+function printColumn(matrix,col,s,e){
+//console.log(col+" "+s+" "+e)
+    let j=col,i=s;
+    while(i <= e){
+      console.log(matrix[i][j]);
+      i++;
+    }
+}
+
+function printRowRev(matrix,row,s,e){
+    let j=s,i=row;
+    while(j >= e){
+      console.log(matrix[i][j]);
+      j--;
+    }
+}
+
+function printColumnRev(matrix,col,s,e){
+    let j=col,i=s;
+    while(i >= e){
+      console.log(matrix[i][j]);
+      i--;
+  }
+}
+
+printSpiralArray()
