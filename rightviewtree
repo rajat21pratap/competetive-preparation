@@ -1,0 +1,52 @@
+function Node(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+
+var Root = new Node(5);
+Root.left = new Node(6);
+Root.right = new Node(9);
+Root.left.left = new Node(10);
+Root.left.right = new Node(18);
+Root.left.left.left = new Node(11);
+Root.left.left.left.left = new Node(15);
+Root.right.right = new Node(91);
+Root.right.right.right = new Node(92);
+Root.right.right.right.right = new Node(93);
+Root.right.right.right.right.right = new Node(94);
+
+function printRightView(Root,queue){
+  if(!Root){
+    return;
+  }
+  var level = 0;
+  queue.unshift(null);
+  queue.unshift(Root);
+  
+  while(queue.length){
+   var node = queue.pop();
+   if(node == null && queue.length){
+     node = queue.pop();
+     console.log(node.value);
+     queue.unshift(null)
+   }
+   if(node){
+     if(node.right)
+     queue.unshift(node.right);
+     if(node.left)
+     queue.unshift(node.left);
+   }
+  }
+}
+
+function findLevels(Root,level){
+  level = level || 0;
+  if(Root == null){
+    return level-1;
+  }
+  return Math.max(findLevels(Root.left,level+1),findLevels(Root.right,level+1))
+}
+
+printRightView(Root,[]);
+
