@@ -1,0 +1,40 @@
+function Node(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+
+var Root = new Node(5);
+Root.left = new Node(6);
+Root.right = new Node(9);
+Root.left.left = new Node(10);
+Root.left.right = new Node(18);
+Root.left.left.left = new Node(11);
+Root.left.left.left.left = new Node(15);
+Root.right.right = new Node(90);
+Root.right.right.right = new Node(90);
+Root.right.right.right.right = new Node(90);
+Root.right.right.right.right.right = new Node(90);
+
+function findLevels(Root,level){
+  level = level || 0;
+  if(Root == null){
+    return level-1;
+  }
+  return Math.max(findLevels(Root.left,level+1),findLevels(Root.right,level+1))
+ 
+}
+
+function findHeight(Root){
+  if(!Root){
+    return -1;
+  }
+  return Math.max(findHeight(Root.left)+1,findHeight(Root.right)+1);
+}
+
+//var height = findHeight(Root);
+//console.log(height);
+
+var level = findLevels(Root);
+console.log(level);
+
