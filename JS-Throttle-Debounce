@@ -6,7 +6,7 @@ function debounce(func,delay){
     }
     let context = this;
     let argumentsArr = arguments;
-    timeoutId = setTimeout(func.apply(context,argumentsArr),delay);
+    timeoutId = setTimeout(()=>{timeoutId=null;func.apply(context,argumentsArr)},delay);
   }
 }
 
@@ -16,7 +16,7 @@ function throttle(func,delay){
     if(!inThrottle){
       let context = this;
       let argumentsArr = arguments;
-      timeoutId = setTimeout(function(){inThrottle = false;func.apply(context,argumentsArr)},delay)
+      timeoutId = setTimeout(()=>{inThrottle = false;func.apply(context,argumentsArr)},delay)
     }
   }
 }
