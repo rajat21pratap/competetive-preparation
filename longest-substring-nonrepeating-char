@@ -1,0 +1,27 @@
+function longestSubs(str){
+  var map = {};
+  var ans = 0;
+  var charArr = str.split('');
+  var i = 0;
+  charArr.forEach((ele,j)=>{
+    if(!map[ele]){
+      map[ele]=ele;
+      ans=Math.max(ans,Object.keys(map).length)
+    }else{
+      while(i<j){
+        if(charArr[i] == ele){
+          i++
+          break;
+        }else{
+          delete map[charArr[i]];
+          i++;
+        }
+      }
+    }
+  })
+  console.log(map)
+  return ans;
+}
+
+console.log(longestSubs("abcccdefghi"))
+
