@@ -1,0 +1,39 @@
+function MSP(root,arr){
+  if(root == null){
+    return 0;
+  }
+  
+  var maxFromLeft = MSP(root.left,arr);
+  var maxFromRight = MSP(root.right,arr);
+  
+  var finalNodeVal = maxFromLeft + maxFromRight + root.val;
+  arr.push(finalNodeVal);
+  console.log(finalNodeVal)
+  var l=maxFromLeft+root.val;
+  var r=maxFromRight+root.val;
+  if(l<=0 && r<=0){
+    return 0;
+  }else{
+   if(l>r)
+   return l
+   else 
+   return r;
+  }
+}
+
+var root = {left:null,right:null,val:-15};
+root.left = {left:null,right:null,val:5};
+root.left.left = {left:null,right:null,val:-8};
+root.left.left.left = {left:null,right:null,val:2};
+root.left.left.right = {left:null,right:null,val:6};
+root.left.right = {left:null,right:null,val:1};
+root.right = {left:null,right:null,val:6};
+root.right.left = {left:null,right:null,val:3};
+root.right.right = {left:null,right:null,val:9};
+root.right.right.right = {left:null,right:null,val:0};
+root.right.right.right.left = {left:null,right:null,val:14};
+root.right.right.right.right = {left:null,right:null,val:-1};
+root.right.right.right.right.left = {left:null,right:null,val:10};
+var a=[]
+MSP(root,a);
+console.log(a)
