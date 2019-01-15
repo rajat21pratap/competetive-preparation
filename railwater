@@ -1,0 +1,73 @@
+
+/*function maxWater(arr){
+ var len = arr.length;var water=[0];var LH,RH;
+ for(let i=1;i<len-1;i++){
+   let myLevel = arr[i];
+   var j=i-1;
+   LH = arr[j];
+   while(j>=0){
+     if(arr[j] > LH){
+       LH = arr[j];
+     }
+     j--;
+   }
+   j=i+1;
+   RH=arr[j];
+   while(j<len){
+     if(arr[j] > RH){
+       RH = arr[j];
+     }
+     j++;
+   }
+   var maxLevel = Math.min(RH,LH);
+   
+   if(maxLevel > arr[i])
+   water[i] = maxLevel-arr[i];
+   else
+   water[i] = 0;
+ }
+ water.push(0);
+ console.log(water);
+}
+
+maxWater([0,1,0,2,1,0,1,3,2,1,2,1]);*/
+
+function maxWater(arr){
+ var len = arr.length;var maxminHeight=[];
+ 
+ for(let i=0;i<len;i++){
+   if(i==0){
+     maxminHeight[i]={lh:arr[i]};
+     continue;
+   }
+   let leftMaxH = maxminHeight[i-1].lh;
+   if(leftMaxH > arr[i]){
+     maxminHeight[i] = {};
+     maxminHeight[i].lh = leftMaxH;
+   }else{
+     maxminHeight[i] = {};
+     maxminHeight[i].lh = arr[i];
+   }
+ }
+ 
+ for(let i=len-1;i>=0;i--){
+   if(i==len-1){
+     maxminHeight[i].rh=arr[i];
+     continue;
+   }
+   let rightMaxH = maxminHeight[i+1].rh;
+   if(rightMaxH > arr[i]){
+     maxminHeight[i].rh = rightMaxH;
+   }else{
+     maxminHeight[i].rh = arr[i];
+   }
+ }
+ var sum=0;
+ for(let i=1;i<len-1;i++){
+   let vol=Math.min(maxminHeight[i].lh,maxminHeight[i].rh)-arr[i];
+   sum=vol>0 ? sum+vol:sum;
+ }
+ console.log(sum)
+}
+
+maxWater([0,1,0,2,1,0,1,3,2,1,2,1]);
