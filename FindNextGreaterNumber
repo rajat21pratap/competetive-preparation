@@ -1,0 +1,48 @@
+function nextGreater(input) {
+  let digitsArr = input.split("");
+  let result, intArr = [] ;
+  digitsArr.reverse().forEach((digit) => {
+    intArr.unshift(digit);
+    if(!result)
+    result = findNextHigherNumFromLast(intArr);
+  });
+  console.log("result"+result);
+console.log("result"+(digitsArr.length-result.length));
+  digitsArr.reverse().splice(digitsArr.length-result.length);
+console.log(digitsArr+"digitsArr")
+result = digitsArr.concat(result);
+console.log("result--"+result);
+console.log(result.join(""));
+};
+
+function findNextHigherNumFromLast(arr) {
+
+    console.log("intArr"+arr);
+  if(arr.length == 1) {
+    return;
+  }
+
+  if (arr[1] > arr[0]) {
+    console.log("yay");
+    let nextHigherIndex = 1;
+    arr.forEach((ele,i) => {
+      if(ele < arr[nextHigherIndex] && ele > arr[0]) {
+        nextHigherIndex = i;
+      }
+    });
+    console.log("nextHigherIndex"+nextHigherIndex);
+    let temp = arr[0];
+    arr[0] = arr[nextHigherIndex];
+    arr[nextHigherIndex] = temp;
+     temp = arr[0];
+    let tempArr = arr.slice(1);
+    
+    tempArr = tempArr.sort();
+    tempArr.unshift(temp);
+    return tempArr;
+  } 
+  return;
+};
+
+
+nextGreater("218765");
